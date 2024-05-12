@@ -45,7 +45,7 @@ function check() {
     if (getCookie("token") == userdata[i]["email"]) {
       document.getElementById("status").textContent = "Status: Logged in";
     } else {
-      window.location.href = `login.html?next=${window.location}`;
+      window.location.href = `login?next=${window.location}`;
     }
   }
 }
