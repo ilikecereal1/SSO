@@ -1,0 +1,268 @@
+:root {
+  --glow-rgb: 147 112 216;
+}
+
+body {  
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  margin: 0rem;
+  overflow: hidden;
+}
+
+#blob {
+  background-color: white;
+  height: 34vmax;
+  aspect-ratio: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: linear-gradient(to right, lightblue, mediumpurple);
+  animation: rotate 20s infinite;
+  opacity: 0.8;
+}
+
+#blur {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  -webkit-backdrop-filter: blur(12vmax); /* fixes blur for Safari */
+  backdrop-filter: blur(12vmax);
+}
+
+#title {
+  text-align: center;
+  font-size: clamp(2rem, 6vmin, 6rem);
+  color: white;
+  white-space: nowrap;
+  animation-fill-mode: forwards;
+}
+
+button {
+  cursor: pointer;
+  font-family: "Space Mono", monospace;
+  font-size: clamp(1rem, 3vmin, 3rem);
+  color: white;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+canvas {
+  white-space: nowrap;
+  translate: 10%;
+  display: block;
+  border: transparent;
+}
+
+p {
+  text-align: center;
+  font-size: clamp(1rem, 3vmin, 3rem);
+  color: white;
+  white-space: nowrap;
+}
+
+input {
+  background-color: transparent;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+#content {
+  font-family: "Space Mono", monospace;
+  z-index: 5;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#animation {
+  width: 100%;
+  animation-name: title;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+#menuButton {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  opacity: 80%;
+  transition: opacity 0.2s ease;
+}
+
+#menuButton:hover {
+  opacity: 100%;
+}
+
+#sourceCode {
+  opacity: 20%;
+  width: clamp(4rem, 16vmin, 16rem);
+  font-size: clamp(1rem, 2vmin, 2rem);
+  text-align: right;
+  transition: opacity 0.2s ease;
+}
+
+#sourceCode:hover {
+  opacity: 80%;
+}
+
+#sourceCode.started {
+  display: none;
+}
+
+/* trail */
+.glow-point {
+  position: absolute;
+  box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--glow-rgb));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.star {
+  position: absolute;
+  z-index: 4;
+  color: white;
+  font-size: 1rem;
+  animation-duration: 1500ms;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+@keyframes fall-1 {
+  0% {
+    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg)
+      scale(0.25);
+    opacity: 0;
+  }
+
+  5% {
+    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg)
+      rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg)
+      rotateZ(90deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-2 {
+  0% {
+    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+    opacity: 0;
+  }
+
+  10% {
+    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg)
+      scale(0.25);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-3 {
+  0% {
+    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+    opacity: 0;
+  }
+
+  15% {
+    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg)
+      scale(0.5);
+    opacity: 0;
+  }
+}
+
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+
+  50% {
+    scale: 1 1.5;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes title {
+  0% {
+    height: 20%;
+  }
+
+  100% {
+    height: 1%;
+  }
+}
+
+@keyframes start {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes started {
+  0% {
+    opacity: 80%;
+    height: clamp(1rem, 3vmin, 3rem);
+  }
+  100% {
+    opacity: 0%;
+    height: 0%;
+  }
+}
+
+@keyframes titleMinimize {
+  0% {
+    font-size: clamp(2rem, 6vmin, 6rem);
+  }
+  100% {
+    font-size: clamp(1rem, 2vmin, 2rem);
+    white-space: nowrap;
+  }
+}
+
+@keyframes endBlur {
+  0% {
+    -webkit-backdrop-filter: blur(0); /* fixes blur for Safari */
+    backdrop-filter: blur(0);
+  }
+  100% {
+    -webkit-backdrop-filter: blur(12px); /* fixes blur for Safari */
+    backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes endText {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
