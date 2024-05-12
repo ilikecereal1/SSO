@@ -50,6 +50,14 @@ function check() {
   }
 }
 
+function loginCheck() {
+  for (let i = 0; i < userdata.length; i++) {
+    if (getCookie("token") == userdata[i]["email"]) {
+      window.location = searchParams.get("next");
+    }
+  }
+}
+
 function login() {
   let found = false;
   let email = prompt("Kindly enter your DJX or primary RavenFuture email.");
